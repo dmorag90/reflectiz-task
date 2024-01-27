@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
     console.log(this.buyersArr);
     this.createGenderEngine();
     this.createAgeSeat();
+    this.createHobbies();
   }
   createGenderEngine() {
     this.genderEngine = [
@@ -170,5 +171,29 @@ export class DashboardComponent implements OnInit {
       }
     }
     console.log(this.seatsAge);
+  }
+  createHobbies() {
+    this.hobbiesVisitors = [
+      { hobby: 'Cooking', counts: 0 },
+      { hobby: 'Books', counts: 0 },
+      { hobby: 'Gaming', counts: 0 },
+      { hobby: 'Gym', counts: 0 },
+      { hobby: 'Tenis', counts: 0 },
+      { hobby: 'Golf', counts: 0 },
+      { hobby: 'jogging', counts: 0 },
+      { hobby: 'Carpentary', counts: 0 },
+      { hobby: 'Drawing', counts: 0 },
+      { hobby: 'Tai Chi', counts: 0 },
+      { hobby: 'Other Sports', counts: 0 },
+    ];
+    this.hobbiesVisitors.forEach((h) => {
+      for (let buyer of this.buyersArr) {
+        h.counts += buyer.hobbies.includes(h.hobby) ? 1 : 0;
+      }
+    });
+    this.hobbiesVisitors.sort((a, b) =>
+      a.counts > b.counts ? -1 : a.counts < b.counts ? 1 : 0
+    );
+    console.log(this.hobbiesVisitors);
   }
 }

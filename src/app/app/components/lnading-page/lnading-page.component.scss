@@ -6,7 +6,7 @@ body {
   width: 100%;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   padding: 10px;
 }
 
@@ -17,6 +17,14 @@ body {
 .row-center {
   @include row;
   justify-content: center;
+}
+.caption {
+  @include row;
+  justify-content: center;
+  height: 2rem;
+  font-family: "Roboto", "sans-serif";
+  font-weight: 700;
+  color: black;
 }
 
 .row-center-pt {
@@ -29,18 +37,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 0 20px;
+  margin: 0 10px;
 }
-.form-field-color {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin: 0 20px;
-  button,
-  img.ColorPickEyeDropper {
-    visibility: hidden !important;
-  }
-}
+
 h1 {
   font-size: 2em;
   font-family: Arial, Helvetica, sans-serif;
@@ -92,12 +91,12 @@ header img {
 
 main {
   background-color: lightgreen;
-
   color: #7c7676;
   width: 80%;
-  min-height: 600px;
-
+  min-height: 500px;
   margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
 }
 main img {
   width: 50%;
@@ -184,10 +183,11 @@ input[type="text"] {
   text-align: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 720px) {
   header,
   main {
     display: block;
+    width: 100%;
     margin: 0;
     padding: 0;
   }
@@ -211,5 +211,18 @@ input[type="text"] {
     margin-left: 50%;
     transform: translate(-50%);
     position: absolute;
+  }
+  .form-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    margin: 5px auto;
+  }
+  .row {
+    flex-direction: column;
+  }
+  mat-form-field {
+    width: 100% !important;
   }
 }

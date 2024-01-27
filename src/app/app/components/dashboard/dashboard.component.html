@@ -7,7 +7,7 @@
 </header>
 <main>
   <div class="row-center">
-    <h2>Engines and most picked Gender</h2>
+    <h2>Visitors Preferences</h2>
   </div>
   <div class="row-center">
     <div class="item4">
@@ -15,6 +15,13 @@
     </div>
     <div class="item4">
       <app-seat-table [seatAge]="seatsAge"></app-seat-table>
+    </div>
+  </div>
+  <div class="row-center-mt">
+    <div class="item4">
+      <app-hobbies-table
+        [hobbiesVisitors]="hobbiesVisitors"
+      ></app-hobbies-table>
     </div>
   </div>
 </main>

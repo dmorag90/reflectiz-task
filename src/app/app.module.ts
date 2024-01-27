@@ -21,9 +21,10 @@ import { LnadingPageComponent } from './app/components/lnading-page/lnading-page
 import { DashboardComponent } from './app/components/dashboard/dashboard.component';
 import { EngineTableComponent } from './app/components/engine-table/engine-table.component';
 import { SeatTableComponent } from './app/components/seat-table/seat-table.component';
+import { HobbiesTableComponent } from './app/components/hobbies-table/hobbies-table.component';
 
 @NgModule({
-  declarations: [AppComponent, LnadingPageComponent, DashboardComponent, EngineTableComponent, SeatTableComponent],
+  declarations: [AppComponent, LnadingPageComponent, DashboardComponent, EngineTableComponent, SeatTableComponent, HobbiesTableComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

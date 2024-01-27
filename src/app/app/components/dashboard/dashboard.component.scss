@@ -2,22 +2,27 @@ body {
   margin-left: 10%;
   margin-right: 10%;
 }
-
-.row {
+@mixin row {
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: start;
   flex-wrap: nowrap;
   padding: 10px;
 }
+
+.row {
+  @include row;
+  justify-content: start;
+}
 .row-center {
-  width: 100%;
-  display: flex;
-  padding: 10px;
-  flex-direction: row;
+  @include row;
   justify-content: center;
-  flex-wrap: nowrap;
+}
+
+.row-center-pt {
+  @include row;
+  justify-content: center;
+  padding-top: 3rem;
 }
 .form-field {
   display: flex;
@@ -179,10 +184,11 @@ input[type="text"] {
   text-align: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 720px) {
   header,
   main {
-    display: block;
+    // display: block;
+    width: 100%;
     margin: 0;
     padding: 0;
   }
@@ -201,10 +207,18 @@ input[type="text"] {
     margin-left: 0;
     margin-right: 0;
   }
-  .box1 {
-    margin-top: 5em;
-    margin-left: 50%;
-    transform: translate(-50%);
-    position: absolute;
+  .item4 {
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .row-center {
+    width: 100%;
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+
+    padding: 10px 0;
   }
 }
