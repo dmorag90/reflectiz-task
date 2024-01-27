@@ -1,0 +1,23 @@
+<table mat-table [dataSource]="seatAge" class="mat-elevation-z8">
+  <ng-container matColumnDef="ageGroup">
+    <th mat-header-cell *matHeaderCellDef>Age Group</th>
+    <td mat-cell *matCellDef="let element">{{ element.ageGroup }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="Two Seats">
+    <th mat-header-cell *matHeaderCellDef>Two Seats</th>
+    <td mat-cell *matCellDef="let element">{{ element["Two Seats"] }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="Five Seats">
+    <th mat-header-cell *matHeaderCellDef>Five Seats</th>
+    <td mat-cell *matCellDef="let element">{{ element["Five Seats"] }}</td>
+  </ng-container>
+  <ng-container matColumnDef="Seven Seats">
+    <th mat-header-cell *matHeaderCellDef>Seven Seats</th>
+    <td mat-cell *matCellDef="let element">{{ element["Seven Seats"] }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

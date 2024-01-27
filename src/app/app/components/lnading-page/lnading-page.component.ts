@@ -8,6 +8,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./lnading-page.component.scss'],
 })
 export class LnadingPageComponent implements OnInit {
+  isSubmitted: boolean = false;
+
   hobbiesList = [
     'Cooking',
     'Bookes',
@@ -64,32 +66,32 @@ export class LnadingPageComponent implements OnInit {
     console.log(this.buyerDetailsForm);
   }
   async submitDetails() {
-    // clean form from ; in values
-    if (!this.buyerDetailsForm.valid) {
-      alert('Please fill all the form fileds correctly.');
-      return;
-    }
-    console.log(this.buyerDetailsForm.value);
-    for (let key in this.buyerDetailsForm.value) {
-      let value = this.buyerDetailsForm.value[key];
-      if (typeof value == 'string') {
-        value = value.trim();
-        value = value.split(';').join('');
-        this.buyerDetailsForm.get(key)?.setValue(value);
-      }
-    }
-    let location: any = this.buyerDetailsForm.controls['location'];
-    for (let key in this.buyerDetailsForm.value.location) {
-      let value = this.buyerDetailsForm.value.location[key];
-      if (typeof value == 'string' && location) {
-        value = value.trim();
-        value = value.split(';').join('');
-        location.get(key).setValue(value);
-      }
-    }
-
-    console.log(this.buyerDetailsForm.value);
     try {
+      if (!this.buyerDetailsForm.valid) {
+        alert('Please fill all the form fileds correctly.');
+        return;
+      }
+      console.log(this.buyerDetailsForm.value);
+      for (let key in this.buyerDetailsForm.value) {
+        let value = this.buyerDetailsForm.value[key];
+        if (typeof value == 'string') {
+          value = value.trim();
+          value = value.split(';').join('');
+          this.buyerDetailsForm.get(key)?.setValue(value);
+        }
+      }
+      let location: any = this.buyerDetailsForm.controls['location'];
+      for (let key in this.buyerDetailsForm.value.location) {
+        let value = this.buyerDetailsForm.value.location[key];
+        if (typeof value == 'string' && location) {
+          value = value.trim();
+          value = value.split(';').join('');
+          location.get(key).setValue(value);
+        }
+      }
+
+      console.log(this.buyerDetailsForm.value);
+
       let result = await this.buyerService.postBuyerDetails(
         this.buyerDetailsForm.value
       );
@@ -98,6 +100,7 @@ export class LnadingPageComponent implements OnInit {
           'Your details were saved successfully, an email with you car match will be sent to you.'
         );
         this.buyerDetailsForm.reset();
+        this.isSubmitted = true;
       }
       if (result == 'error') {
         alert('Something unexpected happend. Try again.');

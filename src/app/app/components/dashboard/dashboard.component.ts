@@ -11,8 +11,6 @@ export class DashboardComponent implements OnInit {
   genderEngine: any[] = [];
   hobbiesVisitors: any[] = [];
   seatsAge: any[] = [];
-  dataSource = this.genderEngine;
-  displayedColumns: string[] = ['engine', 'max', 'maxValue'];
 
   constructor(private buyerService: BuyerService) {}
 
@@ -24,6 +22,7 @@ export class DashboardComponent implements OnInit {
     this.buyersArr = this.buyerService.getAllData();
     console.log(this.buyersArr);
     this.createGenderEngine();
+    this.createAgeSeat();
   }
   createGenderEngine() {
     this.genderEngine = [
@@ -62,7 +61,7 @@ export class DashboardComponent implements OnInit {
       if (buyer.engine == 'hybrid') {
         switch (buyer.gender) {
           case 'male':
-            this.genderEngine[0].Male++;
+            this.genderEngine[2].Male++;
             break;
           case 'female':
             this.genderEngine[2].Female++;
@@ -82,6 +81,94 @@ export class DashboardComponent implements OnInit {
       engine['maxValue'] = engine[max];
     }
     console.log(this.genderEngine);
-    this.dataSource = this.genderEngine;
+  }
+
+  createAgeSeat() {
+    let today = new Date().getFullYear();
+    //calculate age
+    this.buyersArr.forEach((b) => {
+      b.birthDate = new Date(b.birthDate);
+      b.age = today - b.birthDate.getFullYear();
+      b.age = Math.floor(b.age);
+      b.ageGroup =
+        b.age < 26
+          ? '18-25'
+          : b.age < 36
+          ? '26-35'
+          : b.age < 46
+          ? '36-45'
+          : b.age < 56
+          ? '46-55'
+          : '>55';
+    });
+    console.log(this.buyersArr);
+    this.seatsAge = [
+      { ageGroup: '18-25', 'Two Seats': 0, 'Five Seats': 0, 'Seven Seats': 0 },
+      { ageGroup: '26-35', 'Two Seats': 0, 'Five Seats': 0, 'Seven Seats': 0 },
+      { ageGroup: '36-45', 'Two Seats': 0, 'Five Seats': 0, 'Seven Seats': 0 },
+      { ageGroup: '46-55', 'Two Seats': 0, 'Five Seats': 0, 'Seven Seats': 0 },
+      { ageGroup: '>55', 'Two Seats': 0, 'Five Seats': 0, 'Seven Seats': 0 },
+    ];
+    let twoS = this.buyersArr.filter((b) => b.seats >= 2 && b.seats < 5);
+    let fiveS = this.buyersArr.filter((b) => b.seats >= 5 && b.seats < 7);
+    let sevenS = this.buyersArr.filter((b) => b.seats == 7);
+    for (let buyer of twoS) {
+      switch (buyer.ageGroup) {
+        case '18-25':
+          this.seatsAge[0]['Two Seats']++;
+          break;
+        case '26-35':
+          this.seatsAge[1]['Two Seats']++;
+          break;
+        case '36-45':
+          this.seatsAge[2]['Two Seats']++;
+          break;
+        case '46-55':
+          this.seatsAge[3]['Two Seats']++;
+          break;
+        case '>55':
+          this.seatsAge[4]['Two Seats']++;
+          break;
+      }
+    }
+    for (let buyer of fiveS) {
+      switch (buyer.ageGroup) {
+        case '18-25':
+          this.seatsAge[0]['Five Seats']++;
+          break;
+        case '26-35':
+          this.seatsAge[1]['Five Seats']++;
+          break;
+        case '36-45':
+          this.seatsAge[2]['Five Seats']++;
+          break;
+        case '46-55':
+          this.seatsAge[3]['Five Seats']++;
+          break;
+        case '>55':
+          this.seatsAge[4]['Five Seats']++;
+          break;
+      }
+    }
+    for (let buyer of sevenS) {
+      switch (buyer.ageGroup) {
+        case '18-25':
+          this.seatsAge[0]['Seven Seats']++;
+          break;
+        case '26-35':
+          this.seatsAge[1]['Seven Seats']++;
+          break;
+        case '36-45':
+          this.seatsAge[2]['Seven Seats']++;
+          break;
+        case '46-55':
+          this.seatsAge[3]['Seven Seats']++;
+          break;
+        case '>55':
+          this.seatsAge[4]['Seven Seats']++;
+          break;
+      }
+    }
+    console.log(this.seatsAge);
   }
 }

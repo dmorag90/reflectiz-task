@@ -15,12 +15,15 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { NgxColorsModule } from 'ngx-colors';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
 
 import { LnadingPageComponent } from './app/components/lnading-page/lnading-page.component';
 import { DashboardComponent } from './app/components/dashboard/dashboard.component';
+import { EngineTableComponent } from './app/components/engine-table/engine-table.component';
+import { SeatTableComponent } from './app/components/seat-table/seat-table.component';
 
 @NgModule({
-  declarations: [AppComponent, LnadingPageComponent, DashboardComponent],
+  declarations: [AppComponent, LnadingPageComponent, DashboardComponent, EngineTableComponent, SeatTableComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -37,6 +40,7 @@ import { DashboardComponent } from './app/components/dashboard/dashboard.compone
     MatNativeDateModule,
     NgxColorsModule,
     MatTableModule,
+    MatCardModule,
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-IL' }],
   bootstrap: [AppComponent],

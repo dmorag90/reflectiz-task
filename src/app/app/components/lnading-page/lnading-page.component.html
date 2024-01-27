@@ -17,130 +17,144 @@
   </div>
 </header>
 <main>
-  <div class="row-center">
-    <h2>Enter your details</h2>
-  </div>
-  <form action="" [formGroup]="buyerDetailsForm">
-    <div class="row">
-      <mat-form-field class="form-field">
-        <mat-label>Full Name</mat-label>
-        <input matInput type="text" formControlName="fullName" />
-        <button
-          *ngIf="buyerDetailsForm.value.fullName"
-          matSuffix
-          mat-icon-button
-          aria-label="Clear"
-          (click)="buyerDetailsForm.controls['fullName'].reset()"
-        >
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-form-field>
-      <mat-form-field class="form-field">
-        <mat-label>Gender</mat-label>
-        <mat-select formControlName="gender">
-          <mat-option value="male">Male</mat-option>
-          <mat-option value="female">Female</mat-option>
-          <mat-option value="other">Other</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Email</mat-label>
-        <input
-          type="email"
-          matInput
-          placeholder="pat@example.com"
-          formControlName="email"
-          (change)="logForm()"
-        />
-        <mat-error *ngIf="!email?.valid"
-          >You must enter a valid email addres</mat-error
-        >
-      </mat-form-field>
-      <mat-form-field appearance="fill" class="form-field">
-        <mat-label>Birth Date</mat-label>
-        <input
-          matInput
-          [matDatepicker]="datepicker"
-          formControlName="birthDate"
-        />
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle
-          matIconSuffix
-          [for]="datepicker"
-        ></mat-datepicker-toggle>
-        <mat-datepicker #datepicker>
-          <mat-datepicker-actions>
-            <button mat-button matDatepickerCancel>Cancel</button>
-            <button mat-raised-button color="secondary" matDatepickerApply>
-              Apply
-            </button>
-          </mat-datepicker-actions>
-        </mat-datepicker>
-        <mat-error *ngIf="!birthDate?.valid"
-          >You must enter a valid date of birth</mat-error
-        >
-      </mat-form-field>
-    </div>
-    <div class="row">
-      <ng-container formGroupName="location">
-        <mat-form-field class="form-field">
-          <mat-label>Address</mat-label>
-          <textarea
-            matInput
-            formControlName="address"
-            placeholder="Ex. 100 Main St"
-          ></textarea>
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>City</mat-label>
-          <input
-            matInput
-            formControlName="city"
-            placeholder="Ex. San Francisco"
-          />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label>Country</mat-label>
-          <input
-            matInput
-            formControlName="country"
-            placeholder="Ex. California"
-          />
-        </mat-form-field>
-      </ng-container>
-    </div>
-    <div class="row">
-      <mat-form-field appearance="fill" class="form-field">
-        <mat-label>Hobbies</mat-label>
-        <mat-select formControlName="hobbies" multiple>
-          <mat-option *ngFor="let hobby of hobbiesList" [value]="hobby">{{
-            hobby
-          }}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field appearance="fill" class="form-field-color">
-        <mat-label>Favorite Color</mat-label>
-        <input matInput type="color" formControlName="color" />
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" class="form-field">
-        <mat-label>How Many Seats?</mat-label>
-        <input type="number" matInput formControlName="seats" />
-      </mat-form-field>
-      <mat-form-field class="form-field">
-        <mat-label>Engine Type</mat-label>
-        <mat-select formControlName="engine">
-          <mat-option value="fuel">Fuel</mat-option>
-          <mat-option value="electric">Electric</mat-option>
-          <mat-option value="hybrid">Hybrid</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+  <ng-container *ngIf="!isSubmitted">
     <div class="row-center">
-      <button mat-raised-button color="warn" (click)="submitDetails()">
-        Submit Details
-      </button>
+      <h2>Enter your details</h2>
     </div>
-  </form>
+    <form action="" [formGroup]="buyerDetailsForm">
+      <div class="row">
+        <mat-form-field class="form-field">
+          <mat-label>Full Name</mat-label>
+          <input matInput type="text" formControlName="fullName" />
+          <button
+            *ngIf="buyerDetailsForm.value.fullName"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="buyerDetailsForm.controls['fullName'].reset()"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Gender</mat-label>
+          <mat-select formControlName="gender">
+            <mat-option value="male">Male</mat-option>
+            <mat-option value="female">Female</mat-option>
+            <mat-option value="other">Other</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input
+            type="email"
+            matInput
+            placeholder="pat@example.com"
+            formControlName="email"
+            (change)="logForm()"
+          />
+          <mat-error *ngIf="!email?.valid"
+            >You must enter a valid email addres</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Birth Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="datepicker"
+            formControlName="birthDate"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="datepicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #datepicker>
+            <mat-datepicker-actions>
+              <button mat-button matDatepickerCancel>Cancel</button>
+              <button mat-raised-button color="secondary" matDatepickerApply>
+                Apply
+              </button>
+            </mat-datepicker-actions>
+          </mat-datepicker>
+          <mat-error *ngIf="!birthDate?.valid"
+            >You must enter a valid date of birth</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <ng-container formGroupName="location">
+          <mat-form-field class="form-field">
+            <mat-label>Address</mat-label>
+            <textarea
+              matInput
+              formControlName="address"
+              placeholder="Ex. 100 Main St"
+            ></textarea>
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label>City</mat-label>
+            <input
+              matInput
+              formControlName="city"
+              placeholder="Ex. San Francisco"
+            />
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label>Country</mat-label>
+            <input
+              matInput
+              formControlName="country"
+              placeholder="Ex. California"
+            />
+          </mat-form-field>
+        </ng-container>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Hobbies</mat-label>
+          <mat-select formControlName="hobbies" multiple>
+            <mat-option *ngFor="let hobby of hobbiesList" [value]="hobby">{{
+              hobby
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="form-field-color">
+          <mat-label>Favorite Color</mat-label>
+          <input matInput type="color" formControlName="color" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>How Many Seats?</mat-label>
+          <input type="number" matInput formControlName="seats" />
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label>Engine Type</mat-label>
+          <mat-select formControlName="engine">
+            <mat-option value="fuel">Fuel</mat-option>
+            <mat-option value="electric">Electric</mat-option>
+            <mat-option value="hybrid">Hybrid</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="row-center">
+        <button mat-raised-button color="warn" (click)="submitDetails()">
+          Submit Details
+        </button>
+      </div>
+    </form>
+  </ng-container>
+  <ng-container *ngIf="isSubmitted">
+    <div class="row-center-pt">
+      <mat-card>
+        <mat-card-content>
+          <h2>
+            Thank you for submitting your details. Email with your car match
+            will be sent to you.
+          </h2>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </ng-container>
 </main>
 <footer><p>Car4U Reflectiz Task Dani Morag</p></footer>

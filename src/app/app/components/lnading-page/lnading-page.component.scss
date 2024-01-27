@@ -2,23 +2,29 @@ body {
   margin-left: 10%;
   margin-right: 10%;
 }
+@mixin row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding: 10px;
+}
 
 .row {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
+  @include row;
   justify-content: start;
-  flex-wrap: nowrap;
-  padding: 10px;
 }
 .row-center {
-  width: 100%;
-  display: flex;
-  padding: 10px;
-  flex-direction: row;
+  @include row;
   justify-content: center;
-  flex-wrap: nowrap;
 }
+
+.row-center-pt {
+  @include row;
+  justify-content: center;
+  padding-top: 3rem;
+}
+
 .form-field {
   display: flex;
   flex-direction: column;
