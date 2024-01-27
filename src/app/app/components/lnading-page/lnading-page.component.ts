@@ -9,6 +9,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LnadingPageComponent implements OnInit {
   isSubmitted: boolean = false;
+  numOfVisitor: number = 0;
 
   hobbiesList = [
     'Cooking',
@@ -51,7 +52,7 @@ export class LnadingPageComponent implements OnInit {
   constructor(private buyerService: BuyerService) {}
   ngOnInit(): void {
     this.buyerDetailsForm.get('color')?.setValue('#ED0741');
-    // throw new Error('Method not implemented.');
+    this.addCount();
   }
 
   get email() {
@@ -64,6 +65,10 @@ export class LnadingPageComponent implements OnInit {
 
   logForm() {
     console.log(this.buyerDetailsForm);
+  }
+  addCount() {
+    this.numOfVisitor = this.buyerService.addCount();
+    console.log(this.numOfVisitor);
   }
   async submitDetails() {
     try {

@@ -11,13 +11,20 @@ export class DashboardComponent implements OnInit {
   genderEngine: any[] = [];
   hobbiesVisitors: any[] = [];
   seatsAge: any[] = [];
+  numOfVisitors: number = 0;
+  numOfForms: number = 0;
 
   constructor(private buyerService: BuyerService) {}
 
   ngOnInit(): void {
     this.getAllData();
+    this.getCount();
   }
-
+  getCount() {
+    let visitStat = this.buyerService.getCount();
+    this.numOfVisitors = visitStat.visitors;
+    this.numOfForms = visitStat.forms;
+  }
   getAllData() {
     this.buyersArr = this.buyerService.getAllData();
     console.log(this.buyersArr);

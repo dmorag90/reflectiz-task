@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 })
 export class BuyerService {
   buyerCounts: number = 0;
+  numOfVisitors: number = 0;
   constructor() {}
   async postBuyerDetails(form: any) {
     let buyersArr: any = localStorage.getItem('buyers');
@@ -28,5 +29,19 @@ export class BuyerService {
     if (buyers) {
       return JSON.parse(buyers);
     }
+  }
+  addCount() {
+    let count = window.localStorage.getItem('visitorsCounts');
+    this.numOfVisitors = count ? Number(count) + 1 : 1;
+    window.localStorage.setItem('visitorsCounts', this.numOfVisitors + '');
+    return this.numOfVisitors;
+  }
+  getCount() {
+    let count = window.localStorage.getItem('visitorsCounts');
+    let visit = count ? Number(count) : 0;
+    let buyersCount = window.localStorage.getItem('buyersCount');
+    let buyersNum = buyersCount ? Number(buyersCount) : 0;
+    let percent = (buyersNum / visit) * 100;
+    return { visitors: visit, forms: percent };
   }
 }
