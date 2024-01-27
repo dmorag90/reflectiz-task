@@ -1,0 +1,29 @@
+canvas,
+#EngineChart {
+  height: 400px;
+  width: 400px;
+}
+@mixin row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.row {
+  @include row;
+  justify-content: start;
+}
+.row-center {
+  @include row;
+  justify-content: center;
+}
+.caption {
+  @include row;
+  justify-content: center;
+  height: 2rem;
+  font-family: "Roboto", "sans-serif";
+  font-weight: 700;
+  color: black;
+}

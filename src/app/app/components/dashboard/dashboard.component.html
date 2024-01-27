@@ -17,17 +17,30 @@
   </div>
   <div class="row-center">
     <div class="item4">
-      <app-engine-table [genderEngine]="genderEngine"> </app-engine-table>
-    </div>
-    <div class="item4">
       <app-seat-table [seatAge]="seatsAge"></app-seat-table>
     </div>
+    <div class="item4">
+      <app-seat-chart [seatAge]="seatsAge"></app-seat-chart>
+    </div>
   </div>
-  <div class="row-center-mt">
+  <div class="row-center">
+    <div class="item4">
+      <app-hobbies-chart
+        [hobbiesVisitors]="hobbiesVisitors"
+      ></app-hobbies-chart>
+    </div>
     <div class="item4">
       <app-hobbies-table
         [hobbiesVisitors]="hobbiesVisitors"
       ></app-hobbies-table>
+    </div>
+  </div>
+  <div class="row-center">
+    <div class="item4">
+      <app-engine-table [genderEngine]="genderEngine"> </app-engine-table>
+    </div>
+    <div class="item4">
+      <app-engine-chart [genderEngine]="genderEngine"></app-engine-chart>
     </div>
   </div>
 </main>

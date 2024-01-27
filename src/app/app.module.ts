@@ -22,9 +22,12 @@ import { DashboardComponent } from './app/components/dashboard/dashboard.compone
 import { EngineTableComponent } from './app/components/engine-table/engine-table.component';
 import { SeatTableComponent } from './app/components/seat-table/seat-table.component';
 import { HobbiesTableComponent } from './app/components/hobbies-table/hobbies-table.component';
+import { SeatChartComponent } from './app/components/seat-chart/seat-chart.component';
+import { EngineChartComponent } from './app/components/engine-chart/engine-chart.component';
+import { HobbiesChartComponent } from './app/components/hobbies-chart/hobbies-chart.component';
 
 @NgModule({
-  declarations: [AppComponent, LnadingPageComponent, DashboardComponent, EngineTableComponent, SeatTableComponent, HobbiesTableComponent],
+  declarations: [AppComponent, LnadingPageComponent, DashboardComponent, EngineTableComponent, SeatTableComponent, HobbiesTableComponent, SeatChartComponent, EngineChartComponent, HobbiesChartComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
