@@ -63,12 +63,8 @@ export class LnadingPageComponent implements OnInit {
     return this.buyerDetailsForm.get('birthDate');
   }
 
-  logForm() {
-    console.log(this.buyerDetailsForm);
-  }
   addCount() {
     this.numOfVisitor = this.buyerService.addCount();
-    console.log(this.numOfVisitor);
   }
   async submitDetails() {
     try {
@@ -76,7 +72,6 @@ export class LnadingPageComponent implements OnInit {
         alert('Please fill all the form fileds correctly.');
         return;
       }
-      console.log(this.buyerDetailsForm.value);
       for (let key in this.buyerDetailsForm.value) {
         let value = this.buyerDetailsForm.value[key];
         if (typeof value == 'string') {
@@ -94,8 +89,6 @@ export class LnadingPageComponent implements OnInit {
           location.get(key).setValue(value);
         }
       }
-
-      console.log(this.buyerDetailsForm.value);
 
       let result = await this.buyerService.postBuyerDetails(
         this.buyerDetailsForm.value

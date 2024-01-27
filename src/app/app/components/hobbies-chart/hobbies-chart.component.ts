@@ -33,7 +33,7 @@ export class HobbiesChartComponent implements OnInit {
           {
             label: '#Visitors',
             data: dataAr,
-            backgroundColor: 'darkGreen',
+            backgroundColor: 'blue',
           },
         ],
       },

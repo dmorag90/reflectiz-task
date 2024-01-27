@@ -27,7 +27,6 @@ export class DashboardComponent implements OnInit {
   }
   getAllData() {
     this.buyersArr = this.buyerService.getAllData();
-    console.log(this.buyersArr);
     this.createGenderEngine();
     this.createAgeSeat();
     this.createHobbies();
@@ -80,7 +79,6 @@ export class DashboardComponent implements OnInit {
         }
       }
     }
-    console.log(this.genderEngine);
     for (let engine of this.genderEngine) {
       let max = Object.keys(engine).reduce((a, b) =>
         engine[a] > engine[b] ? a : b
@@ -88,7 +86,6 @@ export class DashboardComponent implements OnInit {
       engine['max'] = max;
       engine['maxValue'] = engine[max];
     }
-    console.log(this.genderEngine);
   }
 
   createAgeSeat() {
@@ -109,7 +106,6 @@ export class DashboardComponent implements OnInit {
           ? '46-55'
           : '>55';
     });
-    console.log(this.buyersArr);
     this.seatsAge = [
       { ageGroup: '18-25', 'Two Seats': 0, 'Five Seats': 0, 'Seven Seats': 0 },
       { ageGroup: '26-35', 'Two Seats': 0, 'Five Seats': 0, 'Seven Seats': 0 },
@@ -177,7 +173,6 @@ export class DashboardComponent implements OnInit {
           break;
       }
     }
-    console.log(this.seatsAge);
   }
   createHobbies() {
     this.hobbiesVisitors = [
@@ -201,6 +196,5 @@ export class DashboardComponent implements OnInit {
     this.hobbiesVisitors.sort((a, b) =>
       a.counts > b.counts ? -1 : a.counts < b.counts ? 1 : 0
     );
-    console.log(this.hobbiesVisitors);
   }
 }

@@ -19,21 +19,14 @@ export class EngineChartComponent implements OnInit {
     let maleArr: any = [];
     let femaleArr: any = [];
     let otherArr: any = [];
-    let maxArr: any = [];
-    let maxVArr: any = [];
+
     this.genderEngine.forEach((s) => {
       labelsAr.push(s.engine);
       maleArr.push(s['Male']);
       femaleArr.push(s['Female']);
       otherArr.push(s['Other']);
-      maxArr.push(s['max']);
-      maxVArr.push(s['maxValue']);
     });
-    console.log(labelsAr);
-    console.log(this.genderEngine);
-    console.log(maleArr);
-    console.log(femaleArr);
-    console.log(otherArr);
+
     this.chart = new Chart('EngineChart', {
       type: 'bar', //this denotes tha type of chart
 
